@@ -1,0 +1,40 @@
+name: Lint and Tests
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Ruby Lint 
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
+        - name: Run bundle install
+          run: |
+            gem install bundler
+            bundle install --jobs 4 --retry 3
+        - name: Setup database
+          run: |
+            bin/rails g scaffold translate file:binary reader:string writer:string
+            bin/rails db:migrate
+        - name: Check Rubocop Styles
+          run: bundle exec rubocop
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
+        - name: Run bundle install
+          run: |
+            gem install bundler
+            bundle install --jobs 4 --retry 3
+        - name: Setup database
+          run: |
+              bin/rails g scaffold translate file:binary reader:string writer:string
+              bin/rails db:migrate
+        - name: Run tests
+          run: bin/rails test
