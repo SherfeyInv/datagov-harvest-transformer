@@ -3,73 +3,73 @@
 class TranslatesController < ApplicationController
   # POST /translates
   def create
-    fileObj = params[:file]
-    readerName = params[:reader]
-    writerName = params[:writer]
+    file_obj = params[:file]
+    reader_name = params[:reader]
+    writer_name = params[:writer]
 
-    @mdReturn = ADIWG::Mdtranslator.translate(
-      file: fileObj, reader: readerName, writer: writerName
+    @md_return = ADIWG::Mdtranslator.translate(
+      file: file_obj, reader: reader_name, writer: writer_name
     )
 
-    @responseInfo = {}
-    @responseInfo[:success] = true
-    @responseInfo[:readerStructureStatus] = 'OK'
-    @responseInfo[:readerStructureMessages] = @mdReturn[:readerStructureMessages]
-    @responseInfo[:readerValidationStatus] = 'OK'
-    @responseInfo[:readerValidationMessages] = @mdReturn[:readerValidationMessages]
-    @responseInfo[:readerExecutionStatus] = 'OK'
-    @responseInfo[:readerExecutionMessages] = @mdReturn[:readerExecutionMessages]
-    @responseInfo[:writerStatus] = 'OK'
-    @responseInfo[:writerMessages] = @mdReturn[:writerMessages]
-    @responseInfo[:readerRequested] = @mdReturn[:readerRequested]
-    @responseInfo[:readerVersionRequested] = @mdReturn[:readerVersionRequested]
-    @responseInfo[:readerVersionUsed] = @mdReturn[:readerVersionUsed]
-    @responseInfo[:writerRequested] = @mdReturn[:writerRequested]
-    @responseInfo[:writerVersion] = @mdReturn[:writerVersion]
-    @responseInfo[:writerOutputFormat] = @mdReturn[:writerOutputFormat]
-    @responseInfo[:writerForceValid] = @mdReturn[:writerForceValid]
-    @responseInfo[:writerShowTags] = @mdReturn[:writerShowTags]
-    @responseInfo[:writerCSSlink] = @mdReturn[:writerCSSlink]
-    @responseInfo[:writerMissingIdCount] = @mdReturn[:writerMissingIdCount]
-    @responseInfo[:translatorVersion] = @mdReturn[:translatorVersion]
-    @responseInfo[:writerOutput] = @mdReturn[:writerOutput]
+    @response_info = {}
+    @response_info[:success] = true
+    @response_info[:readerStructureStatus] = 'OK'
+    @response_info[:readerStructureMessages] = @md_return[:readerStructureMessages]
+    @response_info[:readerValidationStatus] = 'OK'
+    @response_info[:readerValidationMessages] = @md_return[:readerValidationMessages]
+    @response_info[:readerExecutionStatus] = 'OK'
+    @response_info[:readerExecutionMessages] = @md_return[:readerExecutionMessages]
+    @response_info[:writerStatus] = 'OK'
+    @response_info[:writerMessages] = @md_return[:writerMessages]
+    @response_info[:readerRequested] = @md_return[:readerRequested]
+    @response_info[:readerVersionRequested] = @md_return[:readerVersionRequested]
+    @response_info[:readerVersionUsed] = @md_return[:readerVersionUsed]
+    @response_info[:writerRequested] = @md_return[:writerRequested]
+    @response_info[:writerVersion] = @md_return[:writerVersion]
+    @response_info[:writerOutputFormat] = @md_return[:writerOutputFormat]
+    @response_info[:writerForceValid] = @md_return[:writerForceValid]
+    @response_info[:writerShowTags] = @md_return[:writerShowTags]
+    @response_info[:writerCSSlink] = @md_return[:writerCSSlink]
+    @response_info[:writerMissingIdCount] = @md_return[:writerMissingIdCount]
+    @response_info[:translatorVersion] = @md_return[:translatorVersion]
+    @response_info[:writerOutput] = @md_return[:writerOutput]
 
     # set messages Status (ERROR, WARNING, NOTICE, none)
-    aSMess = @responseInfo[:readerStructureMessages]
-    aVMess = @responseInfo[:readerValidationMessages]
-    aEMess = @responseInfo[:readerExecutionMessages]
-    aWMess = @responseInfo[:writerMessages]
+    a_s_mess = @response_info[:readerStructureMessages]
+    a_v_mess = @response_info[:readerValidationMessages]
+    a_e_mess = @response_info[:readerExecutionMessages]
+    a_w_mess = @response_info[:writerMessages]
 
     status = 'OK'
-    status = 'NOTICE' if aSMess.any? { |s| s.include?('NOTICE') }
-    status = 'WARNING' if aSMess.any? { |s| s.include?('WARNING') }
-    status = 'ERROR' if aSMess.any? { |s| s.include?('ERROR') }
-    @responseInfo[:readerStructureStatus] = status
+    status = 'NOTICE' if a_s_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_s_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_s_mess.any? { |s| s.include?('ERROR') }
+    @response_info[:readerStructureStatus] = status
 
     status = 'OK'
-    status = 'NOTICE' if aVMess.any? { |s| s.include?('NOTICE') }
-    status = 'WARNING' if aVMess.any? { |s| s.include?('WARNING') }
-    status = 'ERROR' if aVMess.any? { |s| s.include?('ERROR') }
-    @responseInfo[:readerValidationStatus] = status
+    status = 'NOTICE' if a_v_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_v_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_v_mess.any? { |s| s.include?('ERROR') }
+    @response_info[:readerValidationStatus] = status
 
     status = 'OK'
-    status = 'NOTICE' if aEMess.any? { |s| s.include?('NOTICE') }
-    status = 'WARNING' if aEMess.any? { |s| s.include?('WARNING') }
-    status = 'ERROR' if aEMess.any? { |s| s.include?('ERROR') }
-    @responseInfo[:readerExecutionStatus] = status
+    status = 'NOTICE' if a_e_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_e_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_e_mess.any? { |s| s.include?('ERROR') }
+    @response_info[:readerExecutionStatus] = status
 
     status = 'OK'
-    status = 'NOTICE' if aWMess.any? { |s| s.include?('NOTICE') }
-    status = 'WARNING' if aWMess.any? { |s| s.include?('WARNING') }
-    status = 'ERROR' if aWMess.any? { |s| s.include?('ERROR') }
-    @responseInfo[:writerStatus] = status
+    status = 'NOTICE' if a_w_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_w_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_w_mess.any? { |s| s.include?('ERROR') }
+    @response_info[:writerStatus] = status
 
     # check for errors returned by parser, validator, reader, and writer
-    @responseInfo[:success] = false unless @mdReturn[:readerStructurePass]
-    @responseInfo[:success] = false unless @mdReturn[:readerValidationPass]
-    @responseInfo[:success] = false unless @mdReturn[:readerExecutionPass]
-    @responseInfo[:success] = false unless @mdReturn[:writerPass]
+    @response_info[:success] = false unless @md_return[:readerStructurePass]
+    @response_info[:success] = false unless @md_return[:readerValidationPass]
+    @response_info[:success] = false unless @md_return[:readerExecutionPass]
+    @response_info[:success] = false unless @md_return[:writerPass]
 
-    render json: @responseInfo
+    render json: @response_info
   end
 end

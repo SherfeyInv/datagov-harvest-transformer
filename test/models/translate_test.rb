@@ -9,10 +9,10 @@ class TranslateTest < ActiveSupport::TestCase
     @reader = @translate.reader
     @writer = @translate.writer
 
-    @mdReturn = ADIWG::Mdtranslator.translate(
+    @md_return = ADIWG::Mdtranslator.translate(
       file: @file, reader: @reader, writer: @writer
     )
 
-    assert_not_nil(@mdReturn[:writerOutput])
+    assert_not_nil(@md_return[:writerOutput])
   end
 end
