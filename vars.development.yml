@@ -1,0 +1,7 @@
+app-name: mdtranslator
+space-name: development
+image-tag: development
+
+instances: 1
+
+route-external: mdtranslator.app.cloud.gov
