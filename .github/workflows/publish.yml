@@ -1,4 +1,4 @@
-name: 2 - Publish
+name: Publish to GHCR
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   ghcr_publish:
-    name: Publish Images on GHCR
+    name: Publish Image on GHCR
     runs-on: ubuntu-latest
     steps:
       - name: checkout
