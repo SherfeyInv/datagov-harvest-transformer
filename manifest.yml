@@ -1,9 +1,11 @@
 ---
 applications:
-- name: mdtranslator-dev
+- name: ((app-name))
   buildpacks:
       - ruby_buildpack
-  command: rails server
-  memory: 256M
-  random-route: true
+  memory: 128M
+  instances: ((instances))
+  routes:
+      - route: ((route-external))    
   stack: cflinuxfs4
+  command: rails server
