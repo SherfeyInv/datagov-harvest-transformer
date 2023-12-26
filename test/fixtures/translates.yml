@@ -1,11 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  reader: MyString
-  writer: MyString
-  format: MyString
-
-two:
-  reader: MyString
-  writer: MyString
-  format: MyString
+fgdc_to_iso:
+  file: files/USGSHydroCached.xml
+  reader: fgdc
+  writer: iso19115_3
