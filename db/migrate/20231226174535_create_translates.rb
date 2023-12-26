@@ -1,9 +1,9 @@
 class CreateTranslates < ActiveRecord::Migration[6.0]
   def change
     create_table :translates do |t|
+      t.binary :file
       t.string :reader
       t.string :writer
-      t.string :format
 
       t.timestamps
     end
