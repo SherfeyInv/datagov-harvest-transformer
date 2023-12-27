@@ -1,0 +1,21 @@
+name: MDTranslator Rails API Deploy
+
+# on:
+#   pull_request:
+#     branches: -main
+
+on: push
+
+jobs:      
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to cloud.gov
+        uses: cloud-gov/cg-cli-tools@main
+        with: 
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+          cf_vars_file: vars.development.yml
