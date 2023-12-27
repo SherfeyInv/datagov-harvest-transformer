@@ -14,10 +14,6 @@ jobs:
           run: |
             gem install bundler
             bundle install --jobs 4 --retry 3
-        - name: Setup database
-          run: |
-            bin/rails g scaffold translate file:binary reader:string writer:string
-            bin/rails db:migrate
         - name: Check Rubocop Styles
           run: bundle exec rubocop
   test:
@@ -32,9 +28,5 @@ jobs:
           run: |
             gem install bundler
             bundle install --jobs 4 --retry 3
-        - name: Setup database
-          run: |
-              bin/rails g scaffold translate file:binary reader:string writer:string
-              bin/rails db:migrate
         - name: Run tests
           run: bin/rails test
