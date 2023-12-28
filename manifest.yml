@@ -3,7 +3,7 @@ applications:
 - name: ((app-name))
   buildpacks:
       - ruby_buildpack
-  memory: 64M
+  memory: 128M
   instances: ((instances))
   routes:
       - route: ((route-external))    
