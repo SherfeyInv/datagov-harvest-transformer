@@ -1,6 +1,14 @@
 name: MDTranslator Rails API Deploy
 
 # on:
+#     workflow_call:
+#         secrets:
+#             CF_SERVICE_USER:
+#                 required: true
+#             CF_SERVICE_AUTH:
+#                 required: true
+
+# on:
 #   pull_request:
 #     branches: -main
 
@@ -8,12 +16,13 @@ on: push
 
 jobs:      
   deploy:
+    environment: development
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to cloud.gov
         uses: cloud-gov/cg-cli-tools@main
-        with: 
+        with:  
           cf_org: gsa-datagov
           cf_space: development
           cf_username: ${{secrets.CF_SERVICE_USER}}
