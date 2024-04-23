@@ -70,6 +70,6 @@ class TranslatesController < ApplicationController
     @response_info[:success] = false unless @md_return[:readerExecutionPass]
     @response_info[:success] = false unless @md_return[:writerPass]
 
-    render json: @response_info
+    render json: @response_info, status: @response_info[:success] ? 200 : 422
   end
 end
