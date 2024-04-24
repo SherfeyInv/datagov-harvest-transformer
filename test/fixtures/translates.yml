@@ -4,3 +4,8 @@ fgdc_to_iso:
   file: files/USGSHydroCached.xml
   reader: fgdc
   writer: iso19115_3
+
+sbjson_to_mdjson:
+  file: files/sbJson.json
+  reader: sbJson
+  writer: mdJson
