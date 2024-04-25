@@ -16,19 +16,19 @@ class TranslatesController < ApplicationController
 
     @response_info = {}
     @response_info[:success] = true
-    @response_info[:readerStructureStatus] = "OK"
+    @response_info[:readerStructureStatus] = 'OK'
     @response_info[:readerStructureMessages] = @md_return[
       :readerStructureMessages
     ]
-    @response_info[:readerValidationStatus] = "OK"
+    @response_info[:readerValidationStatus] = 'OK'
     @response_info[:readerValidationMessages] = @md_return[
       :readerValidationMessages
     ]
-    @response_info[:readerExecutionStatus] = "OK"
+    @response_info[:readerExecutionStatus] = 'OK'
     @response_info[:readerExecutionMessages] = @md_return[
       :readerExecutionMessages
     ]
-    @response_info[:writerStatus] = "OK"
+    @response_info[:writerStatus] = 'OK'
     @response_info[:writerMessages] = @md_return[:writerMessages]
     @response_info[:readerRequested] = @md_return[:readerRequested]
     @response_info[:readerVersionRequested] = @md_return[
@@ -51,28 +51,28 @@ class TranslatesController < ApplicationController
     a_e_mess = @response_info[:readerExecutionMessages]
     a_w_mess = @response_info[:writerMessages]
 
-    status = "OK"
-    status = "NOTICE" if a_s_mess.any? { |s| s.include?("NOTICE") }
-    status = "WARNING" if a_s_mess.any? { |s| s.include?("WARNING") }
-    status = "ERROR" if a_s_mess.any? { |s| s.include?("ERROR") }
+    status = 'OK'
+    status = 'NOTICE' if a_s_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_s_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_s_mess.any? { |s| s.include?('ERROR') }
     @response_info[:readerStructureStatus] = status
 
-    status = "OK"
-    status = "NOTICE" if a_v_mess.any? { |s| s.include?("NOTICE") }
-    status = "WARNING" if a_v_mess.any? { |s| s.include?("WARNING") }
-    status = "ERROR" if a_v_mess.any? { |s| s.include?("ERROR") }
+    status = 'OK'
+    status = 'NOTICE' if a_v_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_v_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_v_mess.any? { |s| s.include?('ERROR') }
     @response_info[:readerValidationStatus] = status
 
-    status = "OK"
-    status = "NOTICE" if a_e_mess.any? { |s| s.include?("NOTICE") }
-    status = "WARNING" if a_e_mess.any? { |s| s.include?("WARNING") }
-    status = "ERROR" if a_e_mess.any? { |s| s.include?("ERROR") }
+    status = 'OK'
+    status = 'NOTICE' if a_e_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_e_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_e_mess.any? { |s| s.include?('ERROR') }
     @response_info[:readerExecutionStatus] = status
 
-    status = "OK"
-    status = "NOTICE" if a_w_mess.any? { |s| s.include?("NOTICE") }
-    status = "WARNING" if a_w_mess.any? { |s| s.include?("WARNING") }
-    status = "ERROR" if a_w_mess.any? { |s| s.include?("ERROR") }
+    status = 'OK'
+    status = 'NOTICE' if a_w_mess.any? { |s| s.include?('NOTICE') }
+    status = 'WARNING' if a_w_mess.any? { |s| s.include?('WARNING') }
+    status = 'ERROR' if a_w_mess.any? { |s| s.include?('ERROR') }
     @response_info[:writerStatus] = status
 
     # check for errors returned by parser, validator, reader, and writer
