@@ -21,7 +21,9 @@ gem 'puma', '~> 4.1'
 # downgrade psych in response to https://stackoverflow.com/questions/68802089/rails-couldnt-infer-whether-you-are-using-multiple-databases-from-your-database
 gem 'psych', '< 4.0.0'
 
-gem 'adiwg-mdtranslator', '~> 2.18'
+gem 'adiwg-mdtranslator',
+    git: 'https://github.com/GSA/mdTranslator.git',
+    branch: 'feature/DCAT-US-v1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
