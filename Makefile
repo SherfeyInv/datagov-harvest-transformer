@@ -10,3 +10,7 @@ lint:
 .PHONY: test
 test:
 	rails test
+
+# recursively finds all .rb files in the current dir and formats them using stree
+format:
+	find . -type f -name "*.rb" | xargs -L1 bundle exec stree write --plugins=plugin/single_quotes

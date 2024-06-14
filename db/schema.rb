@@ -11,13 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2023_12_26_174535) do
-
-  create_table "translates", force: :cascade do |t|
-    t.binary "file"
-    t.string "reader"
-    t.string "writer"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'translates', force: :cascade do |t|
+    t.binary 'file'
+    t.string 'reader'
+    t.string 'writer'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
-
 end

@@ -7,22 +7,33 @@ class TranslatesController < ApplicationController
     reader_name = params[:reader]
     writer_name = params[:writer]
 
-    @md_return = ADIWG::Mdtranslator.translate(
-      file: file_obj, reader: reader_name, writer: writer_name
-    )
+    @md_return =
+      ADIWG::Mdtranslator.translate(
+        file: file_obj,
+        reader: reader_name,
+        writer: writer_name
+      )
 
     @response_info = {}
     @response_info[:success] = true
     @response_info[:readerStructureStatus] = 'OK'
-    @response_info[:readerStructureMessages] = @md_return[:readerStructureMessages]
+    @response_info[:readerStructureMessages] = @md_return[
+      :readerStructureMessages
+    ]
     @response_info[:readerValidationStatus] = 'OK'
-    @response_info[:readerValidationMessages] = @md_return[:readerValidationMessages]
+    @response_info[:readerValidationMessages] = @md_return[
+      :readerValidationMessages
+    ]
     @response_info[:readerExecutionStatus] = 'OK'
-    @response_info[:readerExecutionMessages] = @md_return[:readerExecutionMessages]
+    @response_info[:readerExecutionMessages] = @md_return[
+      :readerExecutionMessages
+    ]
     @response_info[:writerStatus] = 'OK'
     @response_info[:writerMessages] = @md_return[:writerMessages]
     @response_info[:readerRequested] = @md_return[:readerRequested]
-    @response_info[:readerVersionRequested] = @md_return[:readerVersionRequested]
+    @response_info[:readerVersionRequested] = @md_return[
+      :readerVersionRequested
+    ]
     @response_info[:readerVersionUsed] = @md_return[:readerVersionUsed]
     @response_info[:writerRequested] = @md_return[:writerRequested]
     @response_info[:writerVersion] = @md_return[:writerVersion]
