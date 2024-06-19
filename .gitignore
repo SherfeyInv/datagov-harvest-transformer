@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Local gems
+vendor/
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -30,3 +33,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# mac system files
+.DS_STORE
