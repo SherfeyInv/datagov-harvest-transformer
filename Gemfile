@@ -23,7 +23,7 @@ gem 'psych', '< 4.0.0'
 
 gem 'adiwg-mdtranslator',
     git: 'https://github.com/GSA/mdTranslator.git',
-    branch: 'feature/DCAT-US-v1'
+    branch: 'datagov'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

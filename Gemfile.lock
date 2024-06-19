@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/GSA/mdTranslator.git
-  revision: 9b4540f1433261761ff04814fe9d777e2fa55ca9
-  branch: feature/DCAT-US-v1
+  revision: fe10f1d66171757f87be54e3053e0c09821500b4
+  branch: datagov
   specs:
     adiwg-mdtranslator (2.20.0.pre.beta.5)
       adiwg-mdcodes (= 2.10.0)
