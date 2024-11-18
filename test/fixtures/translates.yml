@@ -9,3 +9,13 @@ sbjson_to_mdjson:
   file: files/sbJson.json
   reader: sbJson
   writer: mdJson
+
+valid_iso19115_2_datagov_to_dcatus:
+  file: files/valid_iso19115_2_datagov.xml
+  reader: iso19115_2_datagov
+  writer: dcat_us
+
+invalid_iso19115_2_datagov_to_dcatus:
+  file: files/invalid_iso19115_2_datagov.xml
+  reader: iso19115_2_datagov
+  writer: dcat_us
