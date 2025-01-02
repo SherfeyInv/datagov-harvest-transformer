@@ -9,14 +9,19 @@ class TranslatesController < ApplicationController
     reader_name = params[:reader]
     writer_name = params[:writer]
 
-    @md_return =
-      ADIWG::Mdtranslator.translate(
-        file: file_obj,
-        reader: reader_name,
-        writer: writer_name
-      )
-
     logger = Logger.new($stdout)
+
+    begin
+      @md_return =
+        ADIWG::Mdtranslator.translate(
+          file: file_obj,
+          reader: reader_name,
+          writer: writer_name
+        )
+    rescue StandardError => e
+      logger.error(e.message)
+      render json: {}, status: :internal_server_error
+    end
 
     @md_return[:readerStructureMessages].each do |m|
       logger.warn(m) if m.include? 'WARNING'
