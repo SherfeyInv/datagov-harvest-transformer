@@ -102,6 +102,10 @@ class TranslatesController < ApplicationController
     @response_info[:success] = false unless @md_return[:readerExecutionPass]
     @response_info[:success] = false unless @md_return[:writerPass]
 
+    # execution status doesn't prevent writing in mdtranslator so correcting here
+    @response_info[:success] = false unless @response_info[:readerExecutionStatus] == 'OK'
+    @response_info[:writerOutput] = nil unless @response_info[:readerExecutionStatus] == 'OK'
+
     render json: @response_info, status: @response_info[:success] ? 200 : 422
   end
 end
