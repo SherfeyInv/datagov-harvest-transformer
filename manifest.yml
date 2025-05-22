@@ -5,7 +5,8 @@ applications:
       - ruby_buildpack
   memory: 512M
   instances: ((instances))
-  no-route: true  
+  routes:
+    - route: ((app_name))-((space_name)).apps.internal
   env:
     NEW_RELIC_APP_NAME: ((app_name))-((space_name))
     NEW_RELIC_HOST: gov-collector.newrelic.com
