@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/GSA/mdTranslator.git
-  revision: d216d932c8ca61afd9696f0a7da14d398783d5e7
+  revision: 9a1cc351f263b50294fadcc541c4cd8a035f52d4
   branch: master
   specs:
     adiwg-mdtranslator (2.20.0.pre.beta.5)
