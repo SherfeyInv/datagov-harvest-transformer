@@ -1,6 +1,8 @@
-name: Lint and Tests
-on: [push, pull_request]
-
+name: Lint, Test, Deploy (development)
+on: push
+permissions:
+  contents: read
+  
 jobs:
   lint:
     name: Ruby Lint 
@@ -30,3 +32,16 @@ jobs:
             bundle install --jobs 4 --retry 3
         - name: Run tests
           run: bin/rails test
+  deploy-development:
+    environment: development
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to cloud.gov
+        uses: cloud-gov/cg-cli-tools@main
+        with:  
+          cf_org: gsa-datagov
+          cf_space: development
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+          cf_vars_file: vars.development.yml

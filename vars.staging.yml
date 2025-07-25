@@ -1,0 +1,8 @@
+app_name: mdtranslator
+space_name: staging
+image_tag: staging
+
+instances: 1
+
+# New Relic
+new_relic_monitor_mode: false

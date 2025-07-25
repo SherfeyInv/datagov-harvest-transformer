@@ -1,22 +1,15 @@
-name: MDTranslator Rails API Deploy
+name: MDTranslator Rails API Deploy (staging & prod)
 
-# on:
-#     workflow_call:
-#         secrets:
-#             CF_SERVICE_USER:
-#                 required: true
-#             CF_SERVICE_AUTH:
-#                 required: true
-
-# on:
-#   pull_request:
-#     branches: -main
-
-on: push
-
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+  
 jobs:      
-  deploy:
-    environment: development
+  deploy-staging:
+    environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +17,20 @@ jobs:
         uses: cloud-gov/cg-cli-tools@main
         with:  
           cf_org: gsa-datagov
-          cf_space: development
+          cf_space: staging
           cf_username: ${{secrets.CF_SERVICE_USER}}
           cf_password: ${{secrets.CF_SERVICE_AUTH}}
-          cf_vars_file: vars.development.yml
+          cf_vars_file: vars.staging.yml
+  deploy-prod:
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to cloud.gov
+        uses: cloud-gov/cg-cli-tools@main
+        with:  
+          cf_org: gsa-datagov
+          cf_space: prod
+          cf_username: ${{secrets.CF_SERVICE_USER}}
+          cf_password: ${{secrets.CF_SERVICE_AUTH}}
+          cf_vars_file: vars.prod.yml
